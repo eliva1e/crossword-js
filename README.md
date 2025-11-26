@@ -1,2 +1,2 @@
 # crossword-js
-Simple javascript crossword (IT College homework)
+Simple crossword web app in pure javascript - IT College work.
