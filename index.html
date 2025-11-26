@@ -1,4 +1,4 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
@@ -6,6 +6,38 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>crossword-js</title>
   </head>
+
+  <template id="word-list-tpl">
+    <table>
+      <thead>
+        <tr>
+          <th>Word</th>
+          <th>Description</th>
+          <th></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr></tr>
+      </tbody>
+    </table>
+  </template>
+
+  <template id="word-row-tpl">
+    <tr>
+      <td class="word">%word</td>
+      <td>%description</td>
+      <td class="remove-word-btn">X</td>
+    </tr>
+  </template>
+
+  <template id="word-input-tpl">
+    <form>
+      <input type="text" placeholder="Word" />
+      <input type="text" placeholder="Description" />
+      <input type="submit" value="Save" />
+    </form>
+  </template>
+
   <body>
     <div id="app"></div>
     <script type="module" src="/src/main.js"></script>

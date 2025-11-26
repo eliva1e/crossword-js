@@ -1,24 +1,36 @@
-import './style.css'
-import javascriptLogo from './javascript.svg'
-import viteLogo from '/vite.svg'
-import { setupCounter } from './counter.js'
+import { renderWordInput, renderWordList } from './renderers';
+import { WordList } from './wordlist';
+import '@fontsource-variable/inter';
+import './style.css';
 
-document.querySelector('#app').innerHTML = `
-  <div>
-    <a href="https://vite.dev" target="_blank">
-      <img src="${viteLogo}" class="logo" alt="Vite logo" />
-    </a>
-    <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript" target="_blank">
-      <img src="${javascriptLogo}" class="logo vanilla" alt="JavaScript logo" />
-    </a>
-    <h1>Hello Vite!</h1>
-    <div class="card">
-      <button id="counter" type="button"></button>
-    </div>
-    <p class="read-the-docs">
-      Click on the Vite logo to learn more
-    </p>
-  </div>
-`
+const root = document.querySelector('#app');
+root.innerHTML = `
+  <div id="word-list"></div>
+  <div id="word-input"></div>
+`;
 
-setupCounter(document.querySelector('#counter'))
+const wl = new WordList();
+
+const wordList = root.querySelector('#word-list');
+wordList.innerHTML = renderWordList(wl);
+
+wl.onChange = () => {
+  wordList.innerHTML = renderWordList(wl);
+  const removeWordButtons = document.querySelectorAll('.remove-word-btn');
+  for (const btn of removeWordButtons) {
+    btn.addEventListener('click', (e) => {
+      const word = e.target.parentElement.querySelector('.word').innerText;
+      wl.remove(word);
+    });
+  }
+};
+
+wl.add('класс', 'описание того, как должен работать объект');
+wl.add('объект', 'часть программы, которая, в теории, должна уметь работать самостоятельно');
+wl.add('функция', 'блок кода, выполняющий определенную задачу');
+wl.add('алгоритм', 'последовательность шагов для решения задачи');
+
+const wordInput = root.querySelector('#word-input');
+wordInput.innerHTML = renderWordInput();
+
+
