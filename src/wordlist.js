@@ -1,4 +1,4 @@
-import { Word } from "./word";
+import { Word } from './word';
 
 export class WordList {
   constructor() {
@@ -13,6 +13,20 @@ export class WordList {
 
   remove(word) {
     this.words = this.words.filter((w) => w.word !== word);
+    this.onChange();
+  }
+
+  findWordObject(word) {
+    return this.words.find((w) => w.word === word);
+  }
+
+  getDescription(word) {
+    return this.findWordObject(word).description;
+  }
+
+  updateDescription(word, description) {
+    const wordObj = this.findWordObject(word);
+    wordObj.description = description;
     this.onChange();
   }
 }

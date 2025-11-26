@@ -25,15 +25,22 @@
   <template id="word-row-tpl">
     <tr>
       <td class="word">%word</td>
-      <td>%description</td>
+      <td class="description">%description</td>
       <td class="remove-word-btn">X</td>
     </tr>
   </template>
 
+  <template id="edit-description-tpl">
+    <form class="edit-description-form">
+      <input type="text" class="description-field" placeholder="Description" />
+      <input type="submit" value="Edit" />
+    </form>
+  </template>
+
   <template id="word-input-tpl">
-    <form>
-      <input type="text" placeholder="Word" />
-      <input type="text" placeholder="Description" />
+    <form id="word-input-form">
+      <input type="text" id="word-field" placeholder="Word" />
+      <input type="text" id="description-field" placeholder="Description" />
       <input type="submit" value="Save" />
     </form>
   </template>

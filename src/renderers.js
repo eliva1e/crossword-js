@@ -14,3 +14,7 @@ export function renderWordList(wl) {
 export function renderWordInput() {
   return document.querySelector('#word-input-tpl').innerHTML;
 }
+
+export function renderDescriptionEdit() {
+  return document.querySelector('#edit-description-tpl').innerHTML;
+}

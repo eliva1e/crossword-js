@@ -4,6 +4,7 @@ body {
 
 table {
   border-collapse: collapse;
+  margin-bottom: 16px;
 }
 
 th {
@@ -14,4 +15,19 @@ th,
 td {
   border: 1px solid #afafaf;
   padding: 8px;
+}
+
+.remove-word-btn:hover {
+  background-color: red;
+  color: white;
+  cursor: pointer;
+}
+
+.edit-description-form {
+  display: flex;
+  gap: 8px;
+}
+.edit-description-form .description-field {
+  width: 100%;
+  min-width: 600px;
 }
