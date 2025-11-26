@@ -6,6 +6,12 @@ export class Crossword {
   }
 
   placeWord(word, x, y, direction) {
+    if (direction === 'horizontal' && (y + word.length > 10)) {
+      throw new Error('Word does not fit horizontally');
+    } else if (direction === 'vertical' && (x + word.length > 10)) {
+      throw new Error('Word does not fit vertically');
+    }
+
     for (const letter of word) {
       this.grid[x][y] = letter;
 

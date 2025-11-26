@@ -106,7 +106,12 @@ crosswordPopupAddForm.onsubmit = (e) => {
   const direction = crosswordPopupAddForm.querySelector('#crossword-popup-direction-field').value;
 
   if (wordToAdd) {
-    crossword.placeWord(wordToAdd, crossword.selectedCell.x, crossword.selectedCell.y, direction);
+    try {
+      crossword.placeWord(wordToAdd, crossword.selectedCell.x, crossword.selectedCell.y, direction);
+    } catch (err) {
+      alert(err.message);
+      return;
+    }
 
     addField.value = '';
     crosswordPopup.style.display = 'none';
