@@ -36,13 +36,13 @@ td {
   min-width: 600px;
 }
 
-#cells {
+#crossword-grid {
   width: fit-content;
-  border: 2px solid #555;
 }
 
 .cell-row {
   display: flex;
+  width: fit-content;
 }
 
 .cell {
@@ -58,4 +58,33 @@ td {
 }
 .cell:hover {
   background-color: #f2f5d9;
+}
+
+#crossword-popup {
+  display: none;
+  width: 100%;
+  height: 100%;
+  position: fixed;
+  top: 0;
+  left: 0;
+  background-color: rgba(0, 0, 0, 0.5);
+}
+
+#crossword-popup-content {
+  background-color: #fefefe;
+  margin: 10% auto;
+  padding: 20px;
+  border: 1px solid #888;
+  max-width: 600px;
+  position: relative;
+}
+
+#crossword-popup-close {
+  color: #aaa;
+  position: absolute;
+  top: 10px;
+  right: 20px;
+  font-size: 28px;
+  font-weight: bold;
+  cursor: pointer;
 }

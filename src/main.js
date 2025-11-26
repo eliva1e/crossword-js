@@ -1,5 +1,6 @@
-import { renderCells, renderDescriptionEdit, renderWordInput, renderWordList } from './renderers';
+import { renderCrosswordGrid, renderCrosswordPopup, renderDescriptionEdit, renderWordInput, renderWordList } from './renderers';
 import { WordList } from './wordlist';
+import { Crossword } from './crossword';
 import '@fontsource-variable/inter';
 import './style.css';
 
@@ -7,9 +8,11 @@ const root = document.querySelector('#app');
 root.innerHTML = `
   <div id="word-list"></div>
   <div id="word-input"></div>
-  <div id="cells"></div>
+  <div id="crossword-grid"></div>
+  <div id="crossword-popup"></div>
 `;
 
+// Word List
 const wl = new WordList();
 
 const wordList = root.querySelector('#word-list');
@@ -19,7 +22,7 @@ wl.onChange = () => {
   wordList.innerHTML = renderWordList(wl);
 };
 
-wordList.addEventListener('click', (e) => {
+wordList.onclick = (e) => {
   if (e.target.classList.contains('remove-word-btn')) {
     const word = e.target.parentElement.querySelector('.word').innerText;
     wl.remove(word);
@@ -28,7 +31,7 @@ wordList.addEventListener('click', (e) => {
     e.target.innerHTML = renderDescriptionEdit();
 
     const form = e.target.querySelector('form');
-    
+
     const newDescription = form.querySelector('.description-field');
     newDescription.value = wl.getDescription(word);
 
@@ -41,13 +44,14 @@ wordList.addEventListener('click', (e) => {
       }
     };
   }
-});
+};
 
 wl.add('класс', 'описание того, как должен работать объект');
 wl.add('объект', 'часть программы, которая, в теории, должна уметь работать самостоятельно');
 wl.add('функция', 'блок кода, выполняющий определенную задачу');
 wl.add('алгоритм', 'последовательность шагов для решения задачи');
 
+// Word Input
 const wordInput = root.querySelector('#word-input');
 wordInput.innerHTML = renderWordInput();
 
@@ -66,5 +70,45 @@ wordInputForm.onsubmit = (e) => {
   }
 };
 
-const cells = root.querySelector('#cells');
-cells.innerHTML = renderCells();
+// Crossword
+const crossword = new Crossword();
+
+const crosswordGrid = root.querySelector('#crossword-grid');
+crosswordGrid.innerHTML = renderCrosswordGrid(crossword);
+
+crossword.onChange = () => {
+  crosswordGrid.innerHTML = renderCrosswordGrid(crossword);
+};
+
+crosswordGrid.onclick = (e) => {
+  const { x, y } = e.target.dataset;
+
+  crossword.selectCell(parseInt(x), parseInt(y));
+  crosswordPopup.style.display = 'block';
+};
+
+// Crossword Popup
+const crosswordPopup = root.querySelector('#crossword-popup');
+crosswordPopup.innerHTML = renderCrosswordPopup();
+
+const crosswordPopupClose = crosswordPopup.querySelector('#crossword-popup-close');
+crosswordPopupClose.onclick = () => {
+  crosswordPopup.style.display = 'none';
+};
+
+const crosswordPopupAddForm = crosswordPopup.querySelector('#crossword-popup-add-form');
+crosswordPopupAddForm.onsubmit = (e) => {
+  e.preventDefault();
+
+  const addField = crosswordPopupAddForm.querySelector('#crossword-popup-add-field');
+  const wordToAdd = addField.value;
+
+  const direction = crosswordPopupAddForm.querySelector('#crossword-popup-direction-field').value;
+
+  if (wordToAdd) {
+    crossword.placeWord(wordToAdd, crossword.selectedCell.x, crossword.selectedCell.y, direction);
+
+    addField.value = '';
+    crosswordPopup.style.display = 'none';
+  }
+};

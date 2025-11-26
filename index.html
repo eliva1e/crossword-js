@@ -26,7 +26,7 @@
     <tr>
       <td class="word">%word</td>
       <td class="description">%description</td>
-      <td class="remove-word-btn">X</td>
+      <td class="remove-word-btn">&times;</td>
     </tr>
   </template>
 
@@ -41,8 +41,23 @@
     <form id="word-input-form">
       <input type="text" id="word-field" placeholder="Word" />
       <input type="text" id="description-field" placeholder="Description" />
-      <input type="submit" value="Save" />
+      <input type="submit" value="Add Word" />
     </form>
+  </template>
+
+  <template id="crossword-popup-tpl">
+    <div id="crossword-popup-content">
+      <span id="crossword-popup-close">&times;</span>
+      
+      <form id="crossword-popup-add-form">
+        <input type="text" id="crossword-popup-add-field" placeholder="Word">
+        <select id="crossword-popup-direction-field">
+          <option value="horizontal">Horizontal</option>
+          <option value="vertical">Vertical</option>
+        </select>
+        <input type="submit" value="Add Word">
+      </form>
+    </div>
   </template>
 
   <body>
