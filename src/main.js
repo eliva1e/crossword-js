@@ -1,4 +1,4 @@
-import { renderDescriptionEdit, renderWordInput, renderWordList } from './renderers';
+import { renderCells, renderDescriptionEdit, renderWordInput, renderWordList } from './renderers';
 import { WordList } from './wordlist';
 import '@fontsource-variable/inter';
 import './style.css';
@@ -7,6 +7,7 @@ const root = document.querySelector('#app');
 root.innerHTML = `
   <div id="word-list"></div>
   <div id="word-input"></div>
+  <div id="cells"></div>
 `;
 
 const wl = new WordList();
@@ -64,3 +65,6 @@ wordInputForm.onsubmit = (e) => {
     descriptionField.value = '';
   }
 };
+
+const cells = root.querySelector('#cells');
+cells.innerHTML = renderCells();

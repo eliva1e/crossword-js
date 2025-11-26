@@ -4,7 +4,6 @@ body {
 
 table {
   border-collapse: collapse;
-  margin-bottom: 16px;
 }
 
 th {
@@ -15,6 +14,11 @@ th,
 td {
   border: 1px solid #afafaf;
   padding: 8px;
+}
+
+#word-list,
+#word-input {
+  margin-bottom: 24px;
 }
 
 .remove-word-btn:hover {
@@ -30,4 +34,28 @@ td {
 .edit-description-form .description-field {
   width: 100%;
   min-width: 600px;
+}
+
+#cells {
+  width: fit-content;
+  border: 2px solid #555;
+}
+
+.cell-row {
+  display: flex;
+}
+
+.cell {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 24px;
+  height: 24px;
+  padding: 8px;
+  border: 1px solid #9a9a9a;
+  transition: background-color 0.2s;
+  cursor: pointer;
+}
+.cell:hover {
+  background-color: #f2f5d9;
 }

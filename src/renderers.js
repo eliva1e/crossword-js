@@ -18,3 +18,25 @@ export function renderWordInput() {
 export function renderDescriptionEdit() {
   return document.querySelector('#edit-description-tpl').innerHTML;
 }
+
+export function renderCells() {
+  const cells = document.createElement('div');
+
+  for (let x = 0; x < 10; x++) {
+    const row = document.createElement('div');
+    row.classList.add('cell-row');
+
+    for (let y = 0; y < 10; y++) {
+      const cell = document.createElement('div');
+      cell.classList.add('cell');
+      
+      row.appendChild(cell);
+    }
+
+    cells.appendChild(row);
+  }
+
+  console.log(cells.innerHTML);
+
+  return cells.innerHTML;
+}
