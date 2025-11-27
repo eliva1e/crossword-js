@@ -27,6 +27,12 @@ wordList.onclick = (e) => {
     const word = e.target.parentElement.querySelector('.word').innerText;
     wl.remove(word);
   } else if (e.target.classList.contains('description')) {
+    if (wl.isUpdating) {
+      return;
+    }
+
+    wl.isUpdating = true;
+
     const word = e.target.parentElement.querySelector('.word').innerText;
     e.target.innerHTML = renderDescriptionEdit();
 

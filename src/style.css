@@ -88,3 +88,11 @@ td {
   font-weight: bold;
   cursor: pointer;
 }
+
+.description {
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+.description:hover {
+  background-color: #f2f5d9;
+}

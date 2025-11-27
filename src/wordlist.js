@@ -3,6 +3,7 @@ import { Word } from './word';
 export class WordList {
   constructor() {
     this.words = [];
+    this.isUpdating = false;
     this.onChange = () => null;
   }
 
@@ -27,6 +28,7 @@ export class WordList {
   updateDescription(word, description) {
     const wordObj = this.findWordObject(word);
     wordObj.description = description;
+    this.isUpdating = false;
     this.onChange();
   }
 }
