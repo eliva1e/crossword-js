@@ -86,18 +86,21 @@ crosswordGrid.onclick = (e) => {
   crossword.selectCell(parseInt(x), parseInt(y));
   crosswordPopup.style.display = 'block';
 
-  const wordField = document.querySelector('#crossword-popup-add-field');
-  const horizontalWord = crossword.getWord(crossword.selectedCell.x, crossword.selectedCell.y, 'horizontal');
+  const horizontalField = document.querySelector('#crossword-popup-horizontal-field');
+  const verticalField = document.querySelector('#crossword-popup-vertical-field');
 
+  const horizontalWord = crossword.getWord(crossword.selectedCell.x, crossword.selectedCell.y, 'horizontal');
   if (horizontalWord) {
-    wordField.value = horizontalWord;
+    horizontalField.value = horizontalWord;
   } else {
-    const verticalWord = crossword.getWord(crossword.selectedCell.x, crossword.selectedCell.y, 'vertical');
-    if (verticalWord) {
-      wordField.value = verticalWord;
-    } else {
-      wordField.value = '';
-    }
+    horizontalField.value = '';
+  }
+
+  const verticalWord = crossword.getWord(crossword.selectedCell.x, crossword.selectedCell.y, 'vertical');
+  if (verticalWord) {
+    verticalField.value = verticalWord;
+  } else {
+    horizontalField.value = '';
   }
 };
 
@@ -126,7 +129,7 @@ crosswordPopupAddForm.onsubmit = (e) => {
       horizontalWord.value = '';
       crosswordPopup.style.display = 'none';
     }
-    
+
     if (verticalWordToAdd) {
       crossword.placeWord(verticalWordToAdd, crossword.selectedCell.x, crossword.selectedCell.y, 'vertical');
       verticalWord.value = '';
