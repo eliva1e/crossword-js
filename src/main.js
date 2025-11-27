@@ -85,6 +85,20 @@ crosswordGrid.onclick = (e) => {
 
   crossword.selectCell(parseInt(x), parseInt(y));
   crosswordPopup.style.display = 'block';
+
+  const wordField = document.querySelector('#crossword-popup-add-field');
+  const horizontalWord = crossword.getWord(crossword.selectedCell.x, crossword.selectedCell.y, 'horizontal');
+
+  if (horizontalWord) {
+    wordField.value = horizontalWord;
+  } else {
+    const verticalWord = crossword.getWord(crossword.selectedCell.x, crossword.selectedCell.y, 'vertical');
+    if (verticalWord) {
+      wordField.value = verticalWord;
+    } else {
+      wordField.value = '';
+    }
+  }
 };
 
 // Crossword Popup

@@ -6,9 +6,9 @@ export class Crossword {
   }
 
   placeWord(word, x, y, direction) {
-    if (direction === 'horizontal' && (y + word.length > 10)) {
+    if (direction === 'horizontal' && y + word.length > 10) {
       throw new Error('Word does not fit horizontally');
-    } else if (direction === 'vertical' && (x + word.length > 10)) {
+    } else if (direction === 'vertical' && x + word.length > 10) {
       throw new Error('Word does not fit vertically');
     }
 
@@ -27,5 +27,26 @@ export class Crossword {
 
   selectCell(x, y) {
     this.selectedCell = { x, y };
+  }
+
+  getWord(x, y, direction) {
+    let word = '';
+
+    while (true) {
+      const letter = this.grid[x][y];
+      if (letter === undefined || letter === ' ') {
+        break;
+      }
+
+      if (direction === 'horizontal') {
+        y += 1;
+      } else if (direction === 'vertical') {
+        x += 1;
+      }
+
+      word += letter;
+    }
+
+    return word;
   }
 }
