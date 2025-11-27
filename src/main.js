@@ -62,12 +62,20 @@ wordInputForm.onsubmit = (e) => {
   const wordField = wordInputForm.querySelector('#word-field');
   const descriptionField = wordInputForm.querySelector('#description-field');
 
-  if (wordField.value && descriptionField.value) {
-    wl.add(wordField.value, descriptionField.value);
-
-    wordField.value = '';
-    descriptionField.value = '';
+  if (!wordField.value) {
+    alert('Enter word!');
+    return;
   }
+
+  if (!descriptionField.value) {
+    alert('Enter description!');
+    return;
+  }
+
+  wl.add(wordField.value, descriptionField.value);
+
+  wordField.value = '';
+  descriptionField.value = '';
 };
 
 // Crossword
@@ -122,6 +130,11 @@ crosswordPopupAddForm.onsubmit = (e) => {
 
   const verticalWord = crosswordPopupAddForm.querySelector('#crossword-popup-vertical-field');
   const verticalWordToAdd = verticalWord.value;
+
+  if (!horizontalWordToAdd && !verticalWordToAdd) {
+    alert('Enter at least one word!');
+    return;
+  }
 
   try {
     if (horizontalWordToAdd) {
