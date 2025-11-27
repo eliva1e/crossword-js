@@ -114,20 +114,26 @@ const crosswordPopupAddForm = crosswordPopup.querySelector('#crossword-popup-add
 crosswordPopupAddForm.onsubmit = (e) => {
   e.preventDefault();
 
-  const addField = crosswordPopupAddForm.querySelector('#crossword-popup-add-field');
-  const wordToAdd = addField.value;
+  const horizontalWord = crosswordPopupAddForm.querySelector('#crossword-popup-horizontal-field');
+  const horizontalWordToAdd = horizontalWord.value;
 
-  const direction = crosswordPopupAddForm.querySelector('#crossword-popup-direction-field').value;
+  const verticalWord = crosswordPopupAddForm.querySelector('#crossword-popup-vertical-field');
+  const verticalWordToAdd = verticalWord.value;
 
-  if (wordToAdd) {
-    try {
-      crossword.placeWord(wordToAdd, crossword.selectedCell.x, crossword.selectedCell.y, direction);
-    } catch (err) {
-      alert(err.message);
-      return;
+  try {
+    if (horizontalWordToAdd) {
+      crossword.placeWord(horizontalWordToAdd, crossword.selectedCell.x, crossword.selectedCell.y, 'horizontal');
+      horizontalWord.value = '';
+      crosswordPopup.style.display = 'none';
     }
-
-    addField.value = '';
-    crosswordPopup.style.display = 'none';
+    
+    if (verticalWordToAdd) {
+      crossword.placeWord(verticalWordToAdd, crossword.selectedCell.x, crossword.selectedCell.y, 'vertical');
+      verticalWord.value = '';
+      crosswordPopup.style.display = 'none';
+    }
+  } catch (err) {
+    alert(err.message);
+    return;
   }
 };

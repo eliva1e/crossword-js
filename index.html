@@ -48,14 +48,11 @@
   <template id="crossword-popup-tpl">
     <div id="crossword-popup-content">
       <span id="crossword-popup-close">&times;</span>
-      
+
       <form id="crossword-popup-add-form">
-        <input type="text" id="crossword-popup-add-field" placeholder="Word">
-        <select id="crossword-popup-direction-field">
-          <option value="horizontal">Horizontal</option>
-          <option value="vertical">Vertical</option>
-        </select>
-        <input type="submit" value="Add Word">
+        <input type="text" id="crossword-popup-horizontal-field" placeholder="Horizontal Word" />
+        <input type="text" id="crossword-popup-vertical-field" placeholder="Vertical Word" />
+        <input type="submit" value="Add Word" />
       </form>
     </div>
   </template>
